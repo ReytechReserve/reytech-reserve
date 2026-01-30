@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reytech Reserve</title>
+  <meta name="description" content="Reytech Reserve — a transparent, commission-based digital saving system. No interest. No loans. No trading. Built for discipline, clarity, and trust." />
+
+  <style>
+    :root{
+      --bg0:#06070b;
+      --bg1:#0b1020;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.08);
+      --stroke:rgba(255,255,255,.10);
+      --text:#e9edf7;
+      --muted:rgba(233,237,247,.72);
+      --muted2:rgba(233,237,247,.55);
+      --accent:#9ad2ff;
+      --accent2:#ffd58b;
+      --good:#7CFFB2;
+      --warn:#ffcc7d;
+      --bad:#ff8fa3;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 22px;
+      --radius2: 16px;
+      --max: 1140px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(154,210,255,.18), transparent 55%),
+        radial-gradient(900px 600px at 85% 20%, rgba(255,213,139,.12), transparent 55%),
+        radial-gradient(900px 700px at 50% 90%, rgba(154,210,255,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 70%, #070815 100%);
+      color:var(--text);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding: 22px 18px 80px; }
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding: 6px 0 12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+      min-width: 220px;
+    }
+    .brand-badge{
+      width:44px; height:44px; border-radius:14px;
+      background:
+        radial-gradient(80% 80% at 30% 20%, rgba(154,210,255,.45), rgba(255,255,255,.06) 60%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--stroke);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      display:grid; place-items:center;
+      overflow:hidden;
+    }
+    .brand-badge svg{ opacity:.95 }
+    .brand-title{
+      display:flex; flex-direction:column; line-height:1.1;
+    }
+    .brand-title b{ font-size:14px; letter-spacing:.2px; }
+    .brand-title span{ font-size:12px; color:var(--muted); }
+
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .chip{
+      text-decoration:none;
+      font-size:12.5px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--stroke);
+      color: var(--muted);
+      transition:.2s transform, .2s background, .2s border;
+      user-select:none;
+    }
+    .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16); }
+
+    .hero{
+      margin-top: 10px;
+      border-radius: calc(var(--radius) + 6px);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)),
+        radial-gradient(1000px 600px at 20% 20%, rgba(154,210,255,.22), transparent 55%),
+        radial-gradient(900px 550px at 85% 25%, rgba(255,213,139,.14), transparent 55%);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(500px 200px at 30% 0%, rgba(255,255,255,.10), transparent 60%),
+        radial-gradient(600px 240px at 70% 0%, rgba(255,255,255,.08), transparent 65%);
+      pointer-events:none;
+      opacity:.6;
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.25fr .9fr;
+      gap: 22px;
+      padding: 34px 22px 26px;
+      position:relative;
+      z-index:1;
+    }
+
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      font-size:12px; color:var(--muted);
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      width: fit-content;
+    }
+    .dot{
+      width:9px; height:9px; border-radius:50%;
+      background: var(--good);
+      box-shadow: 0 0 0 6px rgba(124,255,178,.10);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: 44px;
+      line-height:1.07;
+      letter-spacing: .4px;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+    .cta-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      text-decoration:none;
+      font-weight:650;
+      font-size:14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      transition: .18s transform, .18s background, .18s border;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(154,210,255,.30), rgba(154,210,255,.12));
+      border-color: rgba(154,210,255,.38);
+    }
+    .btn.primary:hover{ background: linear-gradient(180deg, rgba(154,210,255,.36), rgba(154,210,255,.14)); }
+    .btn.outline{
+      background: transparent;
+      border-color: rgba(255,255,255,.16);
+      color: var(--text);
+    }
+    .btn small{ font-weight:600; opacity:.75; }
+
+    .hero-right{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      padding: 16px 16px 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-right .title{
+      font-weight:750;
+      font-size:13px;
+      color: rgba(233,237,247,.90);
+      letter-spacing:.3px;
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom: 10px;
+    }
+    .badge{
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+    }
+    .pillgrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .pill{
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      padding: 12px;
+      min-height: 88px;
+    }
+    .pill b{ display:block; font-size:14px; margin-bottom:6px; }
+    .pill p{ margin:0; color: var(--muted); font-size:12.5px; }
+    .note{
+      margin-top:10px;
+      font-size:12.5px;
+      color: var(--muted2);
+    }
+
+    .section{
+      margin-top: 26px;
+      padding-top: 8px;
+    }
+    .section h2{
+      margin:0 0 10px;
+      font-size: 22px;
+      letter-spacing:.2px;
+    }
+    .section p{ margin: 0 0 10px; color: var(--muted); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .card{
+      grid-column: span 6;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 14px 40px rgba(0,0,0,.30);
+      overflow:hidden;
+    }
+    .card .inner{ padding: 18px 18px 16px; }
+    .card h3{ margin:0 0 8px; font-size:16px; }
+    .card p{ margin:0; color: var(--muted); font-size:13.5px; }
+    .card .list{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style:none;
+    }
+    .card .list li{
+      margin: 8px 0;
+      display:flex; gap:10px; align-items:flex-start;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+    .tick{
+      width:20px; height:20px; flex:0 0 20px;
+      border-radius: 8px;
+      display:grid; place-items:center;
+      background: rgba(124,255,178,.10);
+      border: 1px solid rgba(124,255,178,.25);
+      margin-top:1px;
+    }
+    .cross{
+      width:20px; height:20px; flex:0 0 20px;
+      border-radius: 8px;
+      display:grid; place-items:center;
+      background: rgba(255,143,163,.10);
+      border: 1px solid rgba(255,143,163,.25);
+      margin-top:1px;
+    }
+
+    .wide{ grid-column: span 12; }
+    .third{ grid-column: span 4; }
+    .twoThird{ grid-column: span 8; }
+
+    .media{
+      border-top:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(700px 220px at 20% 10%, rgba(154,210,255,.18), transparent 55%),
+        radial-gradient(700px 220px at 80% 10%, rgba(255,213,139,.12), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.18));
+      padding: 18px;
+    }
+    .media .frame{
+      border-radius: 18px;
+      border:1px dashed rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      height: 190px;
+      display:grid; place-items:center;
+      color: rgba(233,237,247,.60);
+      font-size: 12.5px;
+      text-align:center;
+      padding: 16px;
+    }
+    .media .frame b{ display:block; color: rgba(233,237,247,.80); margin-bottom:6px; }
+
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .step{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      padding: 14px;
+      min-height: 140px;
+    }
+    .num{
+      width:34px; height:34px; border-radius: 14px;
+      background: rgba(154,210,255,.14);
+      border:1px solid rgba(154,210,255,.28);
+      display:grid; place-items:center;
+      font-weight:800;
+      margin-bottom: 10px;
+    }
+    .step b{ display:block; margin-bottom: 6px; }
+    .step p{ margin:0; color: var(--muted); font-size: 13.5px; }
+
+    .fees{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .fee{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      padding: 16px 14px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .fee::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 120px at 50% 0%, rgba(255,255,255,.08), transparent 60%);
+      opacity:.6; pointer-events:none;
+    }
+    .fee .big{ font-size:36px; font-weight:900; letter-spacing:.5px; color: rgba(154,210,255,.92); }
+    .fee .lbl{ margin-top:4px; color: var(--muted); font-weight:650; letter-spacing:.2px; }
+    .fee .desc{ margin-top: 8px; font-size: 12.5px; color: var(--muted2); }
+
+    .faq{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    details{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      padding: 14px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:750;
+      color: rgba(233,237,247,.92);
+      list-style:none;
+    }
+    summary::-webkit-details-marker { display:none; }
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .footer{
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top:1px solid rgba(255,255,255,.10);
+      color: var(--muted2);
+      font-size: 12.5px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      justify-content:space-between;
+      align-items:flex-start;
+    }
+    .footer a{ color: rgba(154,210,255,.88); text-decoration:none; }
+    .footer a:hover{ text-decoration:underline; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .steps{ grid-template-columns: 1fr; }
+      .fees{ grid-template-columns: 1fr; }
+      .faq{ grid-template-columns: 1fr; }
+      .third, .twoThird{ grid-column: span 12; }
+      .card{ grid-column: span 12; }
+    }
+    @media (max-width: 520px){
+      h1{ font-size: 36px; }
+      .pillgrid{ grid-template-columns: 1fr; }
+      .btn{ width:100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <a class="brand" href="#top" aria-label="Reytech Reserve home">
+        <div class="brand-badge" aria-hidden="true">
+          <!-- simple emblem -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.5l8 4.6v9.8l-8 4.6-8-4.6V7.1l8-4.6z" stroke="rgba(233,237,247,.85)" stroke-width="1.2"/>
+            <path d="M7.4 15.2V8.8h5.2c2.2 0 3.6 1 3.6 2.8 0 1.6-1.1 2.7-3 2.8H9.3v1.8H7.4zm1.9-3.5h3.2c1.2 0 1.8-.4 1.8-1.2 0-.8-.6-1.2-1.8-1.2H9.3v2.4z" fill="rgba(154,210,255,.92)"/>
+          </svg>
+        </div>
+        <div class="brand-title">
+          <b>Reytech Reserve</b>
+          <span>Commission-based digital saving system</span>
+        </div>
+      </a>
+
+      <div class="nav">
+        <a class="chip" href="#how">How it Works</a>
+        <a class="chip" href="#principles">Principles</a>
+        <a class="chip" href="#fees">Fees</a>
+        <a class="chip" href="#trust">Trust & Custody</a>
+        <a class="chip" href="#faq">FAQ</a>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div>
+          <div class="kicker"><span class="dot"></span> Built for clarity, discipline, and long-term trust — not hype.</div>
+          <h1>A calmer way to save.<br/>No interest. No loans. No trading.</h1>
+          <p class="sub">
+            Reytech Reserve is a transparent, commission-based digital saving system designed for people who want
+            <b>simplicity</b> and <b>rules</b> — not risky promises.
+            We focus on a clean structure: deposits, custody, clear fees, and straightforward exits.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="https://t.me/reytechofficial" target="_blank" rel="noopener">Join Telegram <small>t.me/reytechofficial</small></a>
+            <a class="btn" href="https://x.com/reytechr" target="_blank" rel="noopener">Follow on X <small>@reytechr</small></a>
+            <a class="btn outline" href="mailto:reytechreserve@gmail.com">Email <small>reytechreserve@gmail.com</small></a>
+          </div>
+
+          <p class="note">
+            Important: Reytech Reserve is a savings-oriented system description. It does not offer interest, lending, or investment advice.
+          </p>
+        </div>
+
+        <aside class="hero-right">
+          <div class="title">
+            What Reytech is (and isn’t)
+            <span class="badge">No hype policy</span>
+          </div>
+
+          <div class="pillgrid">
+            <div class="pill">
+              <b>✅ What it is</b>
+              <p>Rule-based saving flow with transparent fees and clear custody assumptions.</p>
+            </div>
+            <div class="pill">
+              <b>✅ Built for trust</b>
+              <p>Funds are planned to be held with licensed third-party custodial partners, not under one person’s control.</p>
+            </div>
+            <div class="pill">
+              <b>❌ Not a bank</b>
+              <p>No interest, no credit, no deposit product claims, no yield promises.</p>
+            </div>
+            <div class="pill">
+              <b>❌ Not trading</b>
+              <p>No “buy/sell signals”, no leverage, no gambling-style growth narrative.</p>
+            </div>
+          </div>
+
+          <div class="note">
+            Our core belief: <b>rules should be enforced by structure</b>, not by words.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how">
+      <h2>How it works</h2>
+      <p>
+        Reytech Reserve is designed as a simple, understandable saving journey. The system’s value is not “promised returns” —
+        it’s the discipline of a clear process.
+      </p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <b>Deposit</b>
+          <p>
+            Users add funds into the system through defined channels. The goal is convenience without confusion:
+            deposit in, track balance, and keep rules visible.
+          </p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <b>Custody & Protection</b>
+          <p>
+            The operating model assumes user funds are held with licensed third-party custodial partners (where applicable),
+            so custody is not dependent on a single individual.
+          </p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <b>Exit Anytime</b>
+          <p>
+            Users can exit according to clear, published fees. No hidden conditions, no “lock-in traps” disguised as rewards.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRINCIPLES + VISUALS -->
+    <section class="section" id="principles">
+      <h2>Principles</h2>
+      <p>
+        We intentionally keep the narrative simple. Reytech Reserve is built to reduce noise, remove pressure,
+        and keep the system understandable for anyone.
+      </p>
+
+      <div class="grid">
+        <div class="card twoThird">
+          <div class="inner">
+            <h3>Core principles we do not compromise</h3>
+            <ul class="list">
+              <li><span class="tick">✓</span><span><b>No interest.</b> The system is not designed around yield, APR, or passive-return promises.</span></li>
+              <li><span class="tick">✓</span><span><b>No loans.</b> No lending, no borrowing, no credit-style mechanics.</span></li>
+              <li><span class="tick">✓</span><span><b>No trading.</b> No speculation narrative, no “price talk” as the product.</span></li>
+              <li><span class="tick">✓</span><span><b>Transparent fees.</b> Everyone sees the same rules. No hidden tiers for insiders.</span></li>
+              <li><span class="tick">✓</span><span><b>Custody-first design.</b> Funds are planned to be held by licensed third-party custodial partners, not by one person.</span></li>
+              <li><span class="tick">✓</span><span><b>Structure over slogans.</b> Rules must live in the system — not only in words.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card third">
+          <div class="inner">
+            <h3>What we avoid (on purpose)</h3>
+            <ul class="list">
+              <li><span class="cross">×</span><span>“Get rich” messaging</span></li>
+              <li><span class="cross">×</span><span>Guaranteed returns / promises</span></li>
+              <li><span class="cross">×</span><span>Artificial roadmap hype</span></li>
+              <li><span class="cross">×</span><span>Complex terms that hide risk</span></li>
+            </ul>
+            <p style="margin-top:10px; color: var(--muted2); font-size:12.5px;">
+              If it needs hype to work, it’s not for us.
+            </p>
+          </div>
+        </div>
+
+        <div class="card wide">
+          <div class="media">
+            <div class="frame">
+              <b>Visual slot (replace later)</b>
+              Add a banner / explainer image here when ready.<br/>
+              You can upload an image to the repo (e.g. <code>assets/hero.jpg</code>) and replace this placeholder.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEES -->
+    <section class="section" id="fees">
+      <h2>Fees (simple & public)</h2>
+      <p>
+        Reytech Reserve uses a commission-based model — not interest. We keep fees easy to understand.
+      </p>
+
+      <div class="fees">
+        <div class="fee">
+          <div class="big">0%</div>
+          <div class="lbl">Entry Fee</div>
+          <div class="desc">No charge when you enter the system.</div>
+        </div>
+
+        <div class="fee">
+          <div class="big">0.1%</div>
+          <div class="lbl">Monthly System Fee</div>
+          <div class="desc">A small monthly fee to support operations and maintenance.</div>
+        </div>
+
+        <div class="fee">
+          <div class="big">1%</div>
+          <div class="lbl">Exit Fee</div>
+          <div class="desc">A clear fee when you withdraw / exit.</div>
+        </div>
+      </div>
+
+      <p style="margin-top:12px; color: var(--muted2); font-size:12.5px;">
+        Fees are presented as the core mechanism — not hidden inside “spread”, “interest”, or unclear terms.
+      </p>
+    </section>
+
+    <!-- TRUST & CUSTODY -->
+    <section class="section" id="trust">
+      <h2>Trust & custody design</h2>
+      <p>
+        In modern finance, the biggest risk is not always volatility — it’s control concentration.
+        Reytech Reserve is designed around a simple trust rule:
+        <b>user funds should not depend on one person.</b>
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="inner">
+            <h3>Custodial-first approach</h3>
+            <p>
+              The model assumes that, especially in early stages, user funds are held with
+              <b>licensed third-party custodial partners</b> (where applicable).
+              This reduces single-point control risk and increases accountability.
+            </p>
+            <ul class="list">
+              <li><span class="tick">✓</span><span>Clear separation between system operations and fund custody</span></li>
+              <li><span class="tick">✓</span><span>Transparency about where funds are held (as partnerships mature)</span></li>
+              <li><span class="tick">✓</span><span>Operational rules designed to be auditable</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="inner">
+            <h3>Transparency by default</h3>
+            <p>
+              We prefer clarity over complexity. Trust is built with:
+              published rules, visible fees, and a system that explains itself.
+            </p>
+            <ul class="list">
+              <li><span class="tick">✓</span><span>Plain language and publicly visible terms</span></li>
+              <li><span class="tick">✓</span><span>No “secret” investor rules or hidden conditions</span></li>
+              <li><span class="tick">✓</span><span>Updates shared openly (see X and Telegram)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card wide">
+          <div class="media">
+            <div class="frame">
+              <b>Visual slot: “How custody works” diagram</b>
+              Suggested: a simple 3-box diagram → User → Custodial Partner → Exit/Withdraw.<br/>
+              Replace this placeholder later with a PNG/SVG in your repo.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <section class="section" id="why">
+      <h2>Why Reytech Reserve exists</h2>
+      <p>
+        People are exhausted by financial products that rely on pressure, complexity, or promises.
+        Reytech Reserve is built to offer something simpler:
+        <b>a disciplined savings path</b> with visible rules and clean exits.
+      </p>
+
+      <div class="grid">
+        <div class="card third">
+          <div class="inner">
+            <h3>For the saver</h3>
+            <p>
+              You don’t want trading stress. You want a calm place to build consistency.
+              Reytech is designed for that mindset.
+            </p>
+          </div>
+        </div>
+
+        <div class="card third">
+          <div class="inner">
+            <h3>For the cautious</h3>
+            <p>
+              You want to understand exactly what happens to your funds and what it costs — upfront.
+            </p>
+          </div>
+        </div>
+
+        <div class="card third">
+          <div class="inner">
+            <h3>For the community</h3>
+            <p>
+              Transparency is not a marketing line — it’s the operating standard.
+              Updates, rules, and changes must stay visible.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <details>
+          <summary>Is this an investment product?</summary>
+          <p>
+            No. Reytech Reserve is described as a commission-based saving system.
+            It does not offer interest, fixed returns, or investment advice.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do you offer interest / yield / APR?</summary>
+          <p>
+            No. No interest, no yield promises, no APR marketing.
+            The model is built on transparent fees, not “returns”.
+          </p>
+        </details>
+
+        <details>
+          <summary>How are funds held?</summary>
+          <p>
+            The operating approach assumes third-party custodial partners (licensed where applicable),
+            so custody is not reliant on a single person.
+          </p>
+        </details>
+
+        <details>
+          <summary>What are the fees?</summary>
+          <p>
+            Entry fee: 0%. Monthly system fee: 0.1%. Exit fee: 1%.
+            These are shown clearly and designed to stay visible.
+          </p>
+        </details>
+
+        <details>
+          <summary>Where do updates happen?</summary>
+          <p>
+            We post public updates on X and Telegram. Links are at the top and bottom of the page.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I contact you directly?</summary>
+          <p>
+            Yes: <a href="mailto:reytechreserve@gmail.com">reytechreserve@gmail.com</a>
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section" id="contact">
+      <div class="card wide">
+        <div class="inner">
+          <h3>Stay close to the build</h3>
+          <p>
+            We will keep the story clean: clarity, rules, transparency.
+            If you want to follow progress, join the community channels.
+          </p>
+          <div class="cta-row" style="margin-top:12px;">
+            <a class="btn primary" href="https://t.me/reytechofficial" target="_blank" rel="noopener">Telegram</a>
+            <a class="btn" href="https://x.com/reytechr" target="_blank" rel="noopener">X (Twitter)</a>
+            <a class="btn outline" href="mailto:reytechreserve@gmail.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div>
+        © <span id="y"></span> Reytech Reserve. All rights reserved.
+        <div style="margin-top:6px;">
+          <span style="color:rgba(233,237,247,.62);">
+            Disclaimer: This page is informational. Reytech Reserve does not provide interest, loans, or investment advice.
+          </span>
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <div><a href="https://x.com/reytechr" target="_blank" rel="noopener">X</a> · <a href="https://t.me/reytechofficial" target="_blank" rel="noopener">Telegram</a> · <a href="mailto:reytechreserve@gmail.com">Email</a></div>
+        <div style="margin-top:6px; color:rgba(233,237,247,.52);">Built for clarity, not hype.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
