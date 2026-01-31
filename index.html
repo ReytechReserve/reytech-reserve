@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reytech Reserve</title>
+  <meta name="description" content="Reytech Reserve is a transparent, commission-based digital savings system designed for disciplined, long-term capital preservation." />
+
+  <style>
+    :root{
+      --bg:#06070b;
+      --card:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.12);
+      --text:#e9edf7;
+      --muted:rgba(233,237,247,.65);
+      --accent:#9ad2ff;
+      --good:#7cffb2;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      background:radial-gradient(1200px 600px at 10% -10%, #0b1020, transparent),var(--bg);
+      color:var(--text);
+    }
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:48px 20px 80px;
+    }
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:48px;
+    }
+    .logo{
+      font-weight:700;
+      letter-spacing:.4px;
+    }
+    .badge{
+      border:1px solid var(--stroke);
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    h1{
+      font-size:42px;
+      line-height:1.15;
+      margin:0 0 16px;
+    }
+    p.lead{
+      font-size:18px;
+      color:var(--muted);
+      max-width:720px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:20px;
+      margin-top:56px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:22px;
+    }
+    .card h3{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .line{
+      margin:64px 0;
+      border:none;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--stroke),transparent);
+    }
+    footer{
+      margin-top:72px;
+      font-size:13px;
+      color:var(--muted);
+      text-align:center;
+    }
+    .good{color:var(--good)}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">Reytech Reserve</div>
+      <div class="badge">Transparent • Commission-Based</div>
+    </header>
+
+    <main>
+      <h1>A disciplined digital savings system<br/>built on transparency.</h1>
+      <p class="lead">
+        Reytech Reserve is a non-speculative, commission-based digital savings model.
+        It is designed for individuals who prioritize capital preservation, clarity,
+        and long-term discipline over short-term financial risk.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Transparent Structure</h3>
+          <p>
+            All system rules are predefined and publicly disclosed.
+            There are no hidden mechanisms, variable promises, or discretionary changes.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>No Trading, No Interest</h3>
+          <p>
+            Reytech Reserve does not offer trading, leverage, lending,
+            interest-bearing products, or speculative yield models.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Commission-Based Model</h3>
+          <p>
+            The system operates solely on clearly defined service commissions,
+            not on performance claims or profit guarantees.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>User-First Philosophy</h3>
+          <p>
+            Funds are structured to avoid single-party control and are designed
+            to prioritize user trust and operational clarity.
+          </p>
+        </div>
+      </div>
+
+      <hr class="line" />
+
+      <p class="lead">
+        Reytech Reserve is <span class="good">not an investment product</span>.
+        It is a digital savings infrastructure focused on order, discipline,
+        and responsible financial behavior.
+      </p>
+    </main>
+
+    <footer>
+      © 2026 Reytech Reserve — This platform does not provide investment advice,
+      financial guarantees, or profit expectations.
+    </footer>
+  </div>
+</body>
+</html>
